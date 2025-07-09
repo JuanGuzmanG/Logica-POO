@@ -53,7 +53,7 @@ match opcion:
     case 12: print("Capicua" if str(num1 + num2) == str(num1 + num2)[::-1] else "No Capicua")
     case 13: print("Pertenece a Fibonacci" if (num1 + num2)
     in {0, 1} or any((5 * (x ** 2) + 4) in {0, 1} for x in [num1 + num2, -(num1 + num2)]) else "No pertenece a Fibonacci")
-    case 14: print("Triangular" if ((8 * (num1 + num2) ** 0.5).is_integer() and (8 * (num1 + num2) + 1) % 2 == 0) else "No Triangular")
+    case 14: print("Triangular" if (((8 * (num1 + num2)+1) ** 0.5).is_integer()) else "No Triangular")
     case 15: print("Cuadrado Perfecto" if (int((num1 + num2) ** 0.5) ** 2 == (num1 + num2)) else "No Cuadrado Perfecto")
     case _:
         print("Opcion no valida")
