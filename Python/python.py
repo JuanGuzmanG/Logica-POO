@@ -1,5 +1,22 @@
 from re import match
 
+def suma(a, b):
+    return a + b
+def resta(a, b):
+    return a - b
+def multiplicacion(a, b):
+    return a * b
+def division(a, b):
+    if b == 0:
+        return "Error: Division por cero"
+    return a / b
+def comparar(a, b):
+    if a > b:
+        return "Mayor"
+    elif a < b:
+        return "Menor"
+    else:
+        return "Igual"
 
 print("ingrese dos numeros enteros:")
 num1 = int(input("Numero 1: "))
@@ -37,23 +54,26 @@ opcion = int(input())
 
 match opcion:
     case 1: print(num1 + num2)
-    case 2: print(num1 - num2)
-    case 3: print(num1 * num2)
-    case 4: print(num1 / num2 if num2 != 0 else "Error: Division por cero")
-    case 5: print("Mayor" if num1 > num2 else "Menor" if num1 < num2 else "Igual")
-    case 6: print("Positivo" if (num1 + num2) > 0 else "Negativo")
-    case 7: print("Par" if (num1 + num2) % 2 == 0 else "Impar")
-    case 8: print("Entero" if (num1 + num2) % 1 == 0 else "Decimal")
-    case 9: print("Primo" if all((num1 + num2) % i != 0
-                      for i in range(2, int((num1 + num2) ** 0.5) + 1))
-                        and (num1 + num2) > 1 else "Compuesto")
-    case 10: print("Perfecto" if (num1 + num2) == sum(i for i in range(1, (num1 + num2) // 2 + 1) if (num1 + num2) % i == 0) else "No Perfecto")
-    case 11: print("Amigos" if (num1 + num2) == (sum(i for i in range(1, num1) if num1 % i == 0) +
+    case 2: print(resta(num1, num2))
+    case 3: print(multiplicacion(num1, num2))
+    case 4: print(division(num1, num2))
+    case 5: print(comparar(num1, num2))
+    case 6: print("Positivo" if (suma(num1, num2)) > 0 else "Negativo")
+    case 7: print("Par" if (suma(num1, num2)) % 2 == 0 else "Impar")
+    case 8: print("Entero" if (suma(num1, num2)) % 1 == 0 else "Decimal")
+    case 9: print("Primo" if all((suma(num1, num2)) % i != 0
+                      for i in range(2, int((suma(num1, num2)) ** 0.5) + 1))
+                        and (suma(num1, num2)) > 1 else "Compuesto")
+    case 10: print("Perfecto" if (suma(num1, num2)) == sum(i for i in range(1, (suma(num1, num2)) // 2 + 1) if (suma(num1, num2)) % i == 0) else "No Perfecto")
+    case 11: print("Amigos" if (suma(num1, num2)) == (sum(i for i in range(1, num1) if num1 % i == 0) +
                         sum(i for i in range(1, num2) if num2 % i == 0)) else "No Amigos")
-    case 12: print("Capicua" if str(num1 + num2) == str(num1 + num2)[::-1] else "No Capicua")
-    case 13: print("Pertenece a Fibonacci" if (num1 + num2)
-    in {0, 1} or any((5 * (x ** 2) + 4) in {0, 1} for x in [num1 + num2, -(num1 + num2)]) else "No pertenece a Fibonacci")
-    case 14: print("Triangular" if (((8 * (num1 + num2)+1) ** 0.5).is_integer()) else "No Triangular")
-    case 15: print("Cuadrado Perfecto" if (int((num1 + num2) ** 0.5) ** 2 == (num1 + num2)) else "No Cuadrado Perfecto")
+    case 12: print("Capicua" if str(suma(num1, num2)) == str(suma(num1, num2))[::-1] else "No Capicua")
+    case 13:
+        a, b = 0, 1
+        while b < suma(num1, num2):
+            a, b = b, a + b
+        print("Pertenece a la secuencia Fibonacci" if b == suma(num1, num2) else "No pertenece a la secuencia Fibonacci")
+    case 14: print("Triangular" if (((8 * (suma(num1, num2)) + 1) ** 0.5).is_integer()) else "No Triangular")
+    case 15: print("Cuadrado Perfecto" if (int((suma(num1, num2)) ** 0.5) ** 2 == (suma(num1, num2))) else "No Cuadrado Perfecto")
     case _:
         print("Opcion no valida")
