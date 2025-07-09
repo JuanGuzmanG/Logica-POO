@@ -1,5 +1,5 @@
 
-public class Main {
+public class Calculadora {
 
     public static void main(String[] args) {
         System.out.println("1. calculadora");
@@ -8,7 +8,7 @@ public class Main {
             int numero = scanner.nextInt();
             System.out.println("agrega otro numero: ");
             int numero2 = scanner.nextInt();
-            
+
             System.out.println("***************************************************");
             System.out.println("* CALCULADORA AVANZADA *");
             System.out.println("***************************************************");
@@ -35,74 +35,59 @@ public class Main {
             System.out.println("15. Verificar si es un numero cuadrado perfecto");
             System.out.println("---------------------------------------------------");
             int operacion = scanner.nextInt();
-            
+
             switch (operacion) {
-                case 1 -> System.out.println("Resultado: " + suma(numero, numero2));
-                case 2 -> System.out.println("Resultado: " + resta(numero, numero2));
-                case 3 -> System.out.println("Resultado: " + multiplicacion(numero, numero2));
-                case 4 -> System.out.println("Resultado: " + division(numero, numero2));
+                case 1 ->
+                    System.out.println("Resultado: " + suma(numero, numero2));
+                case 2 ->
+                    System.out.println("Resultado: " + resta(numero, numero2));
+                case 3 ->
+                    System.out.println("Resultado: " + multiplicacion(numero, numero2));
+                case 4 ->
+                    System.out.println("Resultado: " + division(numero, numero2));
                 case 5 -> {
-                    if (numero > numero2) {
-                        System.out.println(numero + " es mayor que " + numero2);
-                    } else if (numero < numero2) {
-                        System.out.println(numero + " es menor que " + numero2);
-                    } else {
-                        System.out.println("Los numeros son iguales.");
-                    }
+                    System.out.println(numero == numero2 ? "Los números son iguales."
+                            : (numero > numero2 ? "El primer número es mayor." : "El segundo número es mayor."));
                 }
                 case 6 -> {
-                    if (esPositivo(numero, numero2)) {
-                        System.out.println("La suma de " + numero + " y " + numero2 + " es positiva. " + suma(numero, numero2));
-                    } else {
-                        System.out.println("La suma de " + numero + " y " + numero2 + " es negativa." + suma(numero, numero2));
-                    }
+                    System.out.println(esPositivo(numero, numero2)
+                            ? "La suma de " + numero + " y " + numero2 + " es positiva."
+                            : "La suma de " + numero + " y " + numero2 + " es negativa.");
                 }
                 case 7 -> {
-                    if (esPar(numero, numero2)) {
-                        System.out.println("La suma de " + numero + " y " + numero2 + " es par. " + suma(numero, numero2));
-                    } else {
-                        System.out.println("La suma de " + numero + " y " + numero2 + " es impar. " + suma(numero, numero2));
-                    }
+                    System.out.println(esPar(numero, numero2)
+                            ? "La suma de " + numero + " y " + numero2 + " es par. " + suma(numero, numero2)
+                            : "La suma de " + numero + " y " + numero2 + " es impar. " + suma(numero, numero2));
                 }
                 case 8 -> {
-                    if (suma(numero, numero2) % 1 == 0) {
-                        System.out.println("El resultado es entero.");
-                    } else {
-                        System.out.println("El resultado es entero.");
-                    }
+                    System.out.println(suma(numero, numero2) % 1 == 0
+                            ? "El resultado es entero."
+                            : "El resultado es decimal.");
                 }
                 case 9 -> {
-                    if (esPrimo(suma(numero, numero2))) {
-                        System.out.println("El resultado es un número primo.");
-                    } else {
-                        System.out.println("El resultado es un número compuesto.");
-                    }
+                    System.out.println(esPrimo(suma(numero, numero2))
+                            ? "El resultado es un número primo."
+                            : "El resultado es un número compuesto.");
                 }
                 case 10 -> {
                     int resultado = suma(numero, numero2);
-                    if (sumaDivisores(resultado) == resultado) {
-                        System.out.println("El número " + resultado + " es un número perfecto.");
-                    } else {
-                        System.out.println("El número " + resultado + " no es un número perfecto.");
-                    }
+                    System.out.println(sumaDivisores(resultado) == resultado
+                            ? "El número " + resultado + " es un número perfecto."
+                            : "El número " + resultado + " no es un número perfecto.");
                 }
                 case 11 -> {
                     int divisores1 = sumaDivisores(numero);
                     int divisores2 = sumaDivisores(numero2);
-                    if (divisores1 == numero2 && divisores2 == numero) {
-                        System.out.println("Los números " + numero + " y " + numero2 + " son amigos.");
-                    } else {
-                        System.out.println("Los números " + numero + " y " + numero2 + " no son amigos.");
-                    }
+                    System.out.println(divisores1 == numero2 && divisores2 == numero
+                            ? "Los números " + numero + " y " + numero2 + " son amigos."
+                            : "Los números " + numero + " y " + numero2 + " no son amigos.");
                 }
                 case 12 -> {
                     String numeroStr = String.valueOf(suma(numero, numero2));
                     String numeroReverso = new StringBuilder(numeroStr).reverse().toString();
-                    if (numeroStr.equals(numeroReverso)) {
-                        System.out.println("El número " + numeroStr + " es capicúa.");
-                    } else {
-                        System.out.println("El número " + numeroStr + " no es capicúa.");
-                    }
+                    System.out.println(numeroStr.equals(numeroReverso)
+                            ? "El número " + numeroStr + " es capicúa."
+                            : "El número " + numeroStr + " no es capicúa.");
                 }
                 case 13 -> {
                     int resultado = suma(numero, numero2);
@@ -116,11 +101,9 @@ public class Main {
                     if (b == resultado) {
                         esFibonacci = true;
                     }
-                    if (esFibonacci) {
-                        System.out.println("El número " + resultado + " pertenece a la secuencia Fibonacci.");
-                    } else {
-                        System.out.println("El número " + resultado + " no pertenece a la secuencia Fibonacci.");
-                    }
+                    System.out.println("El número " + resultado + (b == resultado
+                    ? " pertenece" 
+                    : " no pertenece") + " a la secuencia Fibonacci.");
                 }
                 case 14 -> {
                     int n = suma(numero, numero2);
@@ -128,22 +111,19 @@ public class Main {
                     for (int i = 1; triangular < n; i++) {
                         triangular += i;
                     }
-                    if (triangular == n) {
-                        System.out.println("El número " + n + " es un número triangular.");
-                    } else {
-                        System.out.println("El número " + n + " no es un número triangular.");
-                    }
+                    System.out.println(triangular == n
+                    ? "El número " + n + " es un número triangular."
+                    : "El número " + n + " no es un número triangular.");
                 }
                 case 15 -> {
                     int n = suma(numero, numero2);
                     double raiz = Math.sqrt(n);
-                    if (raiz == Math.floor(raiz)) {
-                        System.out.println("El número " + n + " es un cuadrado perfecto.");
-                    } else {
-                        System.out.println("El número " + n + " no es un cuadrado perfecto.");
-                    }
+                    System.out.println(raiz == Math.floor(raiz)
+                    ? "El número " + n + " es un cuadrado perfecto."
+                    : "El número " + n + " no es un cuadrado perfecto.");
                 }
-                default -> System.out.println("Operación no válida. Por favor, elige una opción del menú.");
+                default ->
+                    System.out.println("Operación no válida. Por favor, elige una opción del menú.");
             }
         }
     }
