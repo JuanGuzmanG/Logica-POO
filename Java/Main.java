@@ -5,7 +5,6 @@ public class Main {
         System.out.println("1. calculadora");
         System.out.println("agrega un numero: ");
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        scanner.useDelimiter("\n");
 
         int numero = scanner.nextInt();
         System.out.println("agrega otro numero: ");
@@ -29,33 +28,21 @@ public class Main {
         System.out.println(" 9. Primalidad (primo o compuesto)");
         System.out.println("10. Perfeccion (perfecto o no)");
         System.out.println("11. Amistad (amigos o no)");
-        System.out.println("12. Palindromo (capicua o no)");
+        System.out.println("12. capicua o no");
         System.out.println();
         System.out.println("--- Analisis de Secuencias y Series ---");
         System.out.println("13. Pertenencia a la secuencia Fibonacci");
         System.out.println("14. Verificar si es un numero triangular");
         System.out.println("15. Verificar si es un numero cuadrado perfecto");
-        System.out.println();
-        System.out.println("--- Validacion de Sistemas Numericos ---");
-        System.out.println("16. Validar formato Hexadecimal");
-        System.out.println("17. Validar formato Octal");
         System.out.println("---------------------------------------------------");
         int operacion = scanner.nextInt();
 
         switch (operacion) {
-            case 1:
-                System.out.println("Resultado: " + suma(numero, numero2));
-                break;
-            case 2:
-                System.out.println("Resultado: " + resta(numero, numero2));
-                break;
-            case 3:
-                System.out.println("Resultado: " + multiplicacion(numero, numero2));
-                break;
-            case 4:
-                System.out.println("Resultado: " + division(numero, numero2));   
-                break;
-            case 5:
+            case 1 -> System.out.println("Resultado: " + suma(numero, numero2));
+            case 2 -> System.out.println("Resultado: " + resta(numero, numero2));
+            case 3 -> System.out.println("Resultado: " + multiplicacion(numero, numero2));
+            case 4 -> System.out.println("Resultado: " + division(numero, numero2));
+            case 5 -> {
                 if (numero > numero2) {
                     System.out.println(numero + " es mayor que " + numero2);
                 } else if (numero < numero2) {
@@ -63,27 +50,74 @@ public class Main {
                 } else {
                     System.out.println("Los numeros son iguales.");
                 }
-            case 6: 
-                if(esPositivo(numero, numero2)) {
-                    System.out.println("La suma de " + numero + " y " + numero2 + " es positiva. "+ suma(numero, numero2));
+            }
+            case 6 -> {
+                if (esPositivo(numero, numero2)) {
+                    System.out.println("La suma de " + numero + " y " + numero2 + " es positiva. " + suma(numero, numero2));
                 } else {
-                    System.out.println("La suma de " + numero + " y " + numero2 + " es negativa."+ suma(numero, numero2));
+                    System.out.println("La suma de " + numero + " y " + numero2 + " es negativa." + suma(numero, numero2));
                 }
-            case 7:
-                if(esPar(numero, numero2)) {
+            }
+            case 7 -> {
+                if (esPar(numero, numero2)) {
                     System.out.println("La suma de " + numero + " y " + numero2 + " es par. " + suma(numero, numero2));
                 } else {
                     System.out.println("La suma de " + numero + " y " + numero2 + " es impar. " + suma(numero, numero2));
                 }
-            case 8:
+            }
+            case 8 -> {
                 if (suma(numero, numero2) % 1 == 0) {
                     System.out.println("El resultado es entero.");
                 } else {
                     System.out.println("El resultado es entero.");
                 }
-            default:
-                throw new AssertionError();
+            }
+            case 9 -> {
+                if (esPrimo(suma(numero, numero2))) {
+                    System.out.println("El resultado es un número primo.");
+                } else {
+                    System.out.println("El resultado es un número compuesto.");
+                }
+            }
+            case 10 -> {
+                int resultado = suma(numero, numero2);
+                if (sumaDivisores(resultado) == resultado) {
+                    System.out.println("El número " + resultado + " es un número perfecto.");
+                } else {
+                    System.out.println("El número " + resultado + " no es un número perfecto.");
+                }
+            }
+            case 11 -> {
+                int divisores1 = sumaDivisores(numero);
+                int divisores2 = sumaDivisores(numero2);
+                if (divisores1 == numero2 && divisores2 == numero) {
+                    System.out.println("Los números " + numero + " y " + numero2 + " son amigos.");
+                } else {
+                    System.out.println("Los números " + numero + " y " + numero2 + " no son amigos.");
+                }
+            }
+            case 12 -> {
+                String numeroStr = String.valueOf(suma(numero, numero2));
+                String numeroReverso = new StringBuilder(numeroStr).reverse().toString();
+                if (numeroStr.equals(numeroReverso)) {
+                    System.out.println("El número " + numeroStr + " es capicúa.");
+                } else {
+                    System.out.println("El número " + numeroStr + " no es capicúa.");
+                }
+            }
+            default -> System.out.println("Operación no válida. Por favor, elige una opción del menú.");
         }
+        scanner.close();
+    }
+
+    public static int sumaDivisores(int numero) {
+        int suma = 0;
+        for (int i = 1; i < numero; i++) {
+            if (numero % i == 0) {
+                suma += i;
+            }
+        }
+        return suma;
     }
 
     public static int suma(int a, int b) {
@@ -99,13 +133,14 @@ public class Main {
     }
 
     public static float division(int a, int b) {
-        try{
+        try {
             return (float) a / b;
         } catch (ArithmeticException e) {
             System.out.println("Error: Division por cero no permitida.");
             return -1;
         }
     }
+
     public static boolean esPositivo(int numero, int numero2) {
         int resultado = suma(numero, numero2);
         return resultado >= 0;
@@ -116,4 +151,16 @@ public class Main {
         return resultado % 2 == 0;
     }
 
+    public static boolean esPrimo(int numero) {
+        if (numero <= 1) {
+            System.out.println("El número debe ser mayor que 1 para ser considerado primo o compuesto.");
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(numero); i++) {
+            if (numero % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
