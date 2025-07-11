@@ -38,13 +38,14 @@ public class Calculadora {
 
             switch (operacion) {
                 case 1 ->
-                    System.out.println("Resultado: " + suma(numero, numero2));
+                    System.out.println("Resultado suma: " + suma(numero, numero2));
                 case 2 ->
-                    System.out.println("Resultado: " + resta(numero, numero2));
+                    System.out.println("Resultado resta: " + resta(numero, numero2));
                 case 3 ->
-                    System.out.println("Resultado: " + multiplicacion(numero, numero2));
+                    System.out.println("Resultado multiplicacion: " + multiplicacion(numero, numero2));
                 case 4 ->
-                    System.out.println("Resultado: " + division(numero, numero2));
+                    System.out.println(numero2 == 0 ? "Error: Division por cero no permitida." 
+                            : "Resultado division: " + division(numero, numero2));
                 case 5 -> {
                     System.out.println(numero == numero2 ? "Los números son iguales."
                             : (numero > numero2 ? "El primer número es mayor." : "El segundo número es mayor."));
